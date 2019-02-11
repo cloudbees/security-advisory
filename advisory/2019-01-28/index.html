@@ -17,7 +17,7 @@ Sandbox Bypass in Script Security Plugin
 <strong>
 SECURITY-1292
 /
-CVE pending
+CVE-2019-1003005
 </strong>
 <div class="paragraph">
 <p>Script Security sandbox protection could be circumvented during the script compilation phase by applying AST transforming annotations such as <code>@Grab</code> to source code elements.</p>
@@ -34,7 +34,7 @@ Sandbox Bypass in Groovy Plugin
 <strong>
 SECURITY-1293
 /
-CVE pending
+CVE-2019-1003006
 </strong>
 <div class="paragraph">
 <p>Groovy Plugin has a form validation HTTP endpoint used to validate a user-submitted Groovy script through compilation, which was not subject to sandbox protection.
@@ -49,7 +49,7 @@ Sandbox Bypass via CSRF in Warnings Plugin
 <strong>
 SECURITY-1295 (1)
 /
-CVE pending
+CVE-2019-1003007
 </strong>
 <div class="paragraph">
 <p>Warnings Plugin has a form validation HTTP endpoint used to validate a user-submitted Groovy script through compilation, which was not subject to sandbox protection.
@@ -66,7 +66,7 @@ Sandbox Bypass via CSRF in Warnings Next Generation Plugin
 <strong>
 SECURITY-1295 (2)
 /
-CVE pending
+CVE-2019-1003008
 </strong>
 <div class="paragraph">
 <p>Warnings Next Generation Plugin has a form validation HTTP endpoint used to validate a Groovy script through compilation, which was not subject to sandbox protection.
@@ -83,7 +83,7 @@ Improper certificate validation with StartTLS in Active Directory Plugin
 <strong>
 SECURITY-859
 /
-CVE pending
+CVE-2019-1003009
 </strong>
 <div class="paragraph">
 <p>Active Directory Plugin performs TLS upgrade (StartTLS) after connecting to domain controllers through insecure LDAP.
@@ -102,7 +102,7 @@ CSRF vulnerability in Git Plugin
 <strong>
 SECURITY-1095
 /
-CVE pending
+CVE-2019-1003010
 </strong>
 <div class="paragraph">
 <p>Git Plugin allows the creation of a tag in a job workspace&#8217;s Git repository with accompanying metadata attached to a build record.</p>
@@ -119,7 +119,7 @@ Recursive token expansion results in information disclosure and DoS in Token Mac
 <strong>
 SECURITY-1102
 /
-CVE pending
+CVE-2019-1003011
 </strong>
 <div class="paragraph">
 <p>Token Macro Plugin recursively applied token expansion.</p>
@@ -136,7 +136,7 @@ Blue Ocean did not require CSRF tokens
 <strong>
 SECURITY-1201
 /
-CVE pending
+CVE-2019-1003012
 </strong>
 <div class="paragraph">
 <p>Blue Ocean did not require CSRF tokens ("crumbs") for POST requests with the <code>Content-Type: application/json</code>.</p>
@@ -150,7 +150,7 @@ XSS vulnerability via user description in Blue Ocean
 <strong>
 SECURITY-1204
 /
-CVE pending
+CVE-2019-1003013
 </strong>
 <div class="paragraph">
 <p>Blue Ocean did not properly escape HTML/JavaScript content set on the current user&#8217;s description field, resulting in a cross-site scripting vulnerability exploitable by administrators and other people accessing Jenkins with the same user account.</p>
@@ -164,7 +164,7 @@ XSS vulnerability in Config File Provider Plugin
 <strong>
 SECURITY-1253
 /
-CVE pending
+CVE-2019-1003014
 </strong>
 <div class="paragraph">
 <p>Config File Provider Plugin improperly handled script names in its JavaScript-based UI, resulting in a stored cross-site scripting (XSS) vulnerability.</p>
@@ -178,7 +178,7 @@ XXE vulnerability in Job Import Plugin
 <strong>
 SECURITY-905 (1)
 /
-CVE pending
+CVE-2019-1003015
 </strong>
 <div class="paragraph">
 <p>Job Import Plugin allows to import jobs from other Jenkins instances.
@@ -197,7 +197,7 @@ CSRF vulnerability and missing permission checks in Job Import Plugin allowed ca
 <strong>
 SECURITY-905 (2)
 /
-CVE pending
+CVE-2019-1003016
 </strong>
 <div class="paragraph">
 <p>Job Import Plugin did not check user permissions on its API endpoint used to access remote Jenkins instances.
@@ -212,7 +212,7 @@ CSRF vulnerability in Job Import Plugin allowed creating and overwriting jobs, i
 <strong>
 SECURITY-1302
 /
-CVE pending
+CVE-2019-1003017
 </strong>
 <div class="paragraph">
 <p>Job Import Plugin did not require that POST requests are sent to its <code>/import</code> URL, which processes requests to import jobs.
@@ -228,7 +228,7 @@ GitHub Authentication Plugin showed plain text client secret in configuration fo
 <strong>
 SECURITY-602
 /
-CVE pending
+CVE-2019-1003018
 </strong>
 <div class="paragraph">
 <p>GitHub Authentication Plugin stores the client secret in the global Jenkins configuration.</p>
@@ -246,7 +246,7 @@ Session fixation vulnerability in GitHub Authentication Plugin
 <strong>
 SECURITY-797
 /
-CVE pending
+CVE-2019-1003019
 </strong>
 <div class="paragraph">
 <p>GitHub Authentication Plugin did not invalidate the previous session and create a new one upon successful login, allowing attackers able to control or obtain another user&#8217;s pre-login session ID to impersonate them.</p>
@@ -260,7 +260,7 @@ CSRF vulnerability and missing permission checks in Kanboard Plugin allowed serv
 <strong>
 SECURITY-818
 /
-CVE pending
+CVE-2019-1003020
 </strong>
 <div class="paragraph">
 <p>Kanboard Plugin did not perform permission checks on a method implementing form validation.
@@ -278,7 +278,7 @@ OpenId Connect Authentication Plugin showed plain text client secret in configur
 <strong>
 SECURITY-886
 /
-CVE pending
+CVE-2019-1003021
 </strong>
 <div class="paragraph">
 <p>OpenId Connect Authentication Plugin stores the client secret in the global Jenkins configuration.</p>
@@ -296,7 +296,7 @@ Monitoring Plugin did not apply CSRF protection even if enabled in Jenkins
 <strong>
 SECURITY-1153
 /
-CVE pending
+CVE-2019-1003022
 </strong>
 <div class="paragraph">
 <p>Monitoring Plugin provides a standalone JavaMelody servlet with an independent CSRF protection configuration.
@@ -337,7 +337,7 @@ XSS vulnerability in Warnings Next Generation Plugin
 <strong>
 SECURITY-1271
 /
-CVE pending
+CVE-2019-1003023
 </strong>
 <div class="paragraph">
 <p>Warnings Next Generation Plugin did not properly escape HTML content in warnings displayed on the Jenkins UI, resulting in a cross-site scripting vulnerability exploitable by users able to control warnings parser input.</p>

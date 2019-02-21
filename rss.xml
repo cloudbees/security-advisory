@@ -12,6 +12,7 @@
     <id>https://raw.githubusercontent.com/cloudbees/security-advisory/master/advisory/2019-02-19/index.html</id>
     <title type="text">CloudBees Security Advisory 2019-02-19</title>
     <updated>2019-02-19T00:00:00Z</updated>
+    <summary>CloudBees Security Advisory 2019-02-19</summary>
   </entry>
   <entry>
     <author>
@@ -20,6 +21,7 @@
     <id>https://raw.githubusercontent.com/cloudbees/security-advisory/master/advisory/2019-01-28/index.html</id>
     <title type="text">CloudBees Security Advisory 2019-01-28</title>
     <updated>2019-01-28T00:00:00Z</updated>
+    <summary>CloudBees Security Advisory 2019-02-19</summary>
   </entry>
   <entry>
     <author>
@@ -28,5 +30,6 @@
     <id>https://raw.githubusercontent.com/cloudbees/security-advisory/master/advisory/2019-01-16/index.html</id>
     <title type="text">CloudBees Security Advisory 2019-01-16</title>
     <updated>2019-01-16T00:00:00Z</updated>
+    <summary>CloudBees Security Advisory 2019-02-19</summary>
   </entry>
 </feed>

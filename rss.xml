@@ -13,18 +13,18 @@
     <title type="text">CloudBees Security Advisory 2019-02-19</title>
     <subtitle>This advisory announces vulnerabilities in Jenkins, CloudBees Jenkins Platform and CloudBees Jenkins Solutions.</subtitle>
     <updated>2019-02-19T00:00:00Z</updated>
-    <summary>CloudBees Security Advisory 2019-02-19</summary>
-      <body>
- Sandbox Bypasses in Script Security Plugin
+    <summary>CloudBees Security Advisory 2019-02-19
+
+Sandbox Bypasses in Script Security Plugin
 SECURITY-1320 / CVE pending
 
 The previously implemented script security sandbox protections prohibiting the use of unsafe AST transforming annotations such as @Grab (2019-01-08 fix for SECURITY-1266) could be circumvented through use of various Groovy language features:
 
-    Use of AnnotationCollector
+Use of AnnotationCollector
 
-    Import aliasing
+Import aliasing
 
-    Referencing annotation types using their full class name
+Referencing annotation types using their full class name
 
 This allowed users with Overall/Read permission, or the ability to control Jenkinsfile or sandboxed Pipeline shared library contents in SCM, to bypass the sandbox protection and execute arbitrary code on the Jenkins master.
 
@@ -89,9 +89,8 @@ Arxan MAM Publisher Plugin stored the username and password connection credentia
 While masked from view using a password form field, the password was transferred in plain text to users when accessing the job configuration form.
 
 The plugin now integrates with Credentials Plugin.
-      </body>
-      <severity>Severity</severity>
-      <list>
+
+Severity
         SECURITY-817: medium
         SECURITY-876: medium
         SECURITY-937: medium
@@ -101,16 +100,14 @@ The plugin now integrates with Credentials Plugin.
         SECURITY-1033: medium
         SECURITY-1070: medium
         SECURITY-1320: high
-      </list>
-      <fix>Fix</fix>
-      <list>
+Fix
         CloudBees Traditional Platforms should be upgraded 2.150.3.2-rev2
         CloudBees Cloud Platforms should be upgraded 2.150.3.2-rev2
         CloudBees Jenkins Enterprise should be upgraded the Managed Masters and Operations Center to 2.150.3.2-rev2
         CloudBees Jenkins Platform (rolling train, CJP Operations Center and CJP Client Master (2.x.y.z) should be upgraded to version 2.150.3.2-rev2
         CloudBees Jenkins Platform (fixed train, CJP Operations Center and CJP Client Master (2.107.x.0.z) should be upgraded to version 2.107.37.0.2-rev3
         CloudBees Jenkins Team should be upgraded to version 2.150.3.2-rev2
-      </list>
+      </summary>
   </entry>
   <entry>
     <author>
@@ -120,8 +117,7 @@ The plugin now integrates with Credentials Plugin.
     <title type="text">CloudBees Security Advisory 2019-01-28</title>
     <subtitle>This advisory announces vulnerabilities in Jenkins, CloudBees Jenkins Platform and CloudBees Jenkins Solutions.</subtitle>
     <updated>2019-01-28T00:00:00Z</updated>
-    <summary>CloudBees Security Advisory 2019-01-28</summary>
-    <body>
+    <summary>CloudBees Security Advisory 2019-01-28
    Sandbox Bypass in Script Security Plugin
 SECURITY-1292 / CVE-2019-1003005
 
@@ -261,9 +257,7 @@ Warnings Next Generation Plugin did not properly escape HTML content in warnings
 
 Warnings Next Generation Plugin now removes unsafe HTML content from warnings.
 
-    </body>
-    <severity>Severity</severity>
-    <list>
+Severity
       SECURITY-602: low
       SECURITY-797: medium
       SECURITY-818: medium
@@ -284,15 +278,14 @@ Warnings Next Generation Plugin now removes unsafe HTML content from warnings.
       SECURITY-1295 (1): high
       SECURITY-1295 (2): high
       SECURITY-1302: medium
-    </list>
-    <fix>Fix</fix>
-    <list>
+
+Fix
       CloudBees Traditional Platforms should be upgraded 2.150.2.3-rev2
       CloudBees Cloud Platforms should be upgraded 2.150.2.3-rev2
       CloudBees Jenkins Enterprise should be upgraded the Managed Masters and Operations Center to 2.150.2.3-rev2
       CloudBees Jenkins Platform (rolling train, CJP Operations Center and CJP Client Master (2.x.y.z) should be upgraded to version 2.150.2.3-rev2
       CloudBees Jenkins Platform (fixed train, CJP Operations Center and CJP Client Master (2.107.x.0.z) should be upgraded to version 2.107.37.0.2-rev2
       CloudBees Jenkins Team should be upgraded to version 2.150.2.3-rev2
-    </list>
+    </summary>
   </entry>
 </feed>

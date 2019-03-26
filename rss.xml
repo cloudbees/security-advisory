@@ -13,13 +13,11 @@
     <title type="text">CloudBees Security Advisory 2019-03-25</title>
     <subtitle>This advisory announces vulnerabilities in Jenkins, CloudBees Jenkins Platform and CloudBees Jenkins Solutions.</subtitle>
     <updated>2019-03-25T00:00:00Z</updated>
-    <summary><![CDATA[<h1>CloudBees Security Advisory 2019-03-25</h1>
-<p>This advisory announces vulnerabilities in<strong>
-Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core.
-</strong></p>
+    <summary><![CDATA[<p>This advisory announces vulnerabilities in
+<strong>Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core.</strong></p>
 <h3 id='SECURITY-1353'>Sandbox bypass in Script Security Plugin and Pipeline: Groovy Plugin
 </h3>
-<strong>SECURITY-1353 / CVE pending</strong>
+<strong>SECURITY-1353</strong>
 <div class="paragraph">
 <p>Sandbox projection in the Script Security and Pipeline: Groovy Plugins could be circumvented through methods supporting type casts and type coercion.
 This allowed attackers to invoke constructors for arbitrary types.</p>
@@ -29,7 +27,7 @@ This allowed attackers to invoke constructors for arbitrary types.</p>
 </div>
 <h3 id='SECURITY-1361'>XSS vulnerability in Lockable Resources Plugin
 </h3>
-<strong>SECURITY-1361 / CVE pending</strong>
+<strong>SECURITY-1361</strong>
 <div class="paragraph">
 <p>Lockable Resources Plugin did not properly escape resource names in generated JavaScript code, thus leading to a cross-site scripting (XSS) vulnerability.</p>
 </div>
@@ -38,7 +36,7 @@ This allowed attackers to invoke constructors for arbitrary types.</p>
 </div>
 <h3 id='SECURITY-976'>CSRF vulnerability and missing permission checks in Slack Notification Plugin allowed capturing credentials
 </h3>
-<strong>SECURITY-976 / CVE pending</strong>
+<strong>SECURITY-976</strong>
 <div class="paragraph">
 <p>Notification Plugin Plugin did not perform permission checks on a method implementing form validation.
 This allowed users with Overall/Read access to Jenkins to connect to an attacker-specified URL using attacker-specified credentials IDs obtained through another method, capturing credentials stored in Jenkins.</p>
@@ -51,7 +49,7 @@ This allowed users with Overall/Read access to Jenkins to connect to an attacker
 </div>
 <h3 id='SECURITY-846'>ECS Publisher Plugin stored and displayed API token in plain text
 </h3>
-<strong>SECURITY-846 / CVE pending</strong>
+<strong>SECURITY-846</strong>
 <div class="paragraph">
 <p>ECS Publisher Plugin stored the API token unencrypted in jobs' <code>config.xml</code> files and its global configuration file on the Jenkins master.
 This token could be viewed by users with Extended Read permission, or access to the master file system.</p>
@@ -64,7 +62,7 @@ This token could be viewed by users with Extended Read permission, or access to 
 </div>
 <h3 id='SECURITY-992'>SSRF vulnerability due to missing permission check in Fortify on Demand Uploader Plugin
 </h3>
-<strong>SECURITY-992 / CVE pending</strong>
+<strong>SECURITY-992</strong>
 <div class="paragraph">
 <p>A missing permission check in multiple form validation methods in Fortify on Demand Uploader Plugin allowed users with Overall/Read permission to initiate a connection test to an attacker-specified server.</p>
 </div>
@@ -76,7 +74,7 @@ This token could be viewed by users with Extended Read permission, or access to 
 </div>
 <h3 id='SECURITY-1089'>PRQA Plugin stored password in plain text
 </h3>
-<strong>SECURITY-1089 / CVE pending</strong>
+<strong>SECURITY-1089</strong>
 <div class="paragraph">
 <p>PRQA Plugin stored a password unencrypted in its global configuration file on the Jenkins master.
 This password could be viewed by users with access to the master file system.</p>
@@ -86,7 +84,7 @@ This password could be viewed by users with access to the master file system.</p
 </div>
 <h3 id='SECURITY-1086'>Codebeamer Test Results Trend Updater Plugin stored password in plain text
 </h3>
-<strong>SECURITY-1086 / CVE pending</strong>
+<strong>SECURITY-1086</strong>
 <div class="paragraph">
 <p>Codebeamer Test Results Trend Updater Plugin stored username and password in its configuration unencrypted in jobs' <code>config.xml</code> files on the Jenkins master.
 This password could be viewed by users with Extended Read permission, or access to the master file system.</p>
@@ -96,7 +94,7 @@ This password could be viewed by users with Extended Read permission, or access 
 </div>
 <h3 id='SECURITY-1328'>Unprivileged users with Overall/Read access were able to enumerate credential IDs in Arxan MAM Publisher Plugin
 </h3>
-<strong>SECURITY-1328 / CVE pending</strong>
+<strong>SECURITY-1328</strong>
 <div class="paragraph">
 <p>Arxan MAM Publisher Plugin provides a list of applicable credential IDs to allow administrators configuring the plugin to select the one to use.</p>
 </div>
@@ -129,7 +127,6 @@ Those could be used as part of an attack to capture the credentials using anothe
 <li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.138.x.0.z) should be upgraded to version 2.138.40.0.2-rev5</li>
 <li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.107.x.0.z) should be upgraded to version 2.107.37.0.2-rev7</li>
 <li><strong>CloudBees Jenkins Distribution</strong>&nbsp;should be upgraded to version 2.164.1.2-rev2</li>
-</ul>
-]]></summary>
+</ul>]]></summary>
   </entry>
 </feed>

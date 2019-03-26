@@ -13,8 +13,9 @@
     <title type="text">CloudBees Security Advisory 2019-03-25</title>
     <subtitle>This advisory announces vulnerabilities in Jenkins, CloudBees Jenkins Platform and CloudBees Jenkins Solutions.</subtitle>
     <updated>2019-03-25T00:00:00Z</updated>
-    <summary><![CDATA[<p>This advisory announces vulnerabilities in
-<strong>Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core.</strong></p>
+    <summary><![CDATA[<p>
+<p>This advisory announces vulnerabilities in <strong>Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core</strong>.</p>
+</p>
 <h3 id='SECURITY-1353'>Sandbox bypass in Script Security Plugin and Pipeline: Groovy Plugin
 </h3>
 <strong>SECURITY-1353</strong>
@@ -127,6 +128,7 @@ Those could be used as part of an attack to capture the credentials using anothe
 <li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.138.x.0.z) should be upgraded to version 2.138.40.0.2-rev5</li>
 <li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.107.x.0.z) should be upgraded to version 2.107.37.0.2-rev7</li>
 <li><strong>CloudBees Jenkins Distribution</strong>&nbsp;should be upgraded to version 2.164.1.2-rev2</li>
-</ul>]]></summary>
+</ul>
+]]></summary>
   </entry>
 </feed>

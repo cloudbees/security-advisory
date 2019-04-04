@@ -9,521 +9,125 @@
     <author>
       <name>CloudBees</name>
     </author>
-    <id>https://raw.githubusercontent.com/cloudbees/security-advisory/master/advisory/2019-04-03/index.html</id>
-    <title type="text">CloudBees Security Advisory 2019-04-03</title>
+    <id>https://raw.githubusercontent.com/cloudbees/security-advisory/master/advisory/2019-03-25/index.html</id>
+    <title type="text">CloudBees Security Advisory 2019-03-25</title>
     <subtitle>This advisory announces vulnerabilities in Jenkins, CloudBees Jenkins Platform and CloudBees Jenkins Solutions.</subtitle>
-    <updated>2019-04-03T00:00:00Z</updated>
+    <updated>2019-03-25T00:00:00Z</updated>
     <summary><![CDATA[<p>
-<p>This advisory announces vulnerabilities in <strong>Jenkins</strong>.</p>
+<p>This advisory announces vulnerabilities in <strong>Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core</strong>.</p>
 </p>
-<h3 id='SECURITY-829'>IRC Plugin stores credentials in plain text</h3>
-<strong>SECURITY-829</strong>
+<h3 id='SECURITY-1353'>Sandbox bypass in Script Security Plugin and Pipeline: Groovy Plugin
+</h3>
+<strong>SECURITY-1353</strong>
 <div class="paragraph">
-<p>IRC Plugin stores credentials unencrypted in its global configuration file <code>hudson.plugins.ircbot.IrcPublisher.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>Sandbox projection in the Script Security and Pipeline: Groovy Plugins could be circumvented through methods supporting type casts and type coercion.
+This allowed attackers to invoke constructors for arbitrary types.</p>
 </div>
-<h3 id='SECURITY-831'>AWS Elastic Beanstalk Publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-831</strong>
 <div class="paragraph">
-<p>AWS Elastic Beanstalk Publisher Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.awsbeanstalkpublisher.AWSEBPublisher.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>Script Security and Pipeline: Groovy have been hardened to prevent these methods of bypassing sandbox protection.</p>
 </div>
-<h3 id='SECURITY-839'>HockeyApp Plugin stores credentials in plain text</h3>
-<strong>SECURITY-839</strong>
+<h3 id='SECURITY-1361'>XSS vulnerability in Lockable Resources Plugin
+</h3>
+<strong>SECURITY-1361</strong>
 <div class="paragraph">
-<p>HockeyApp Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>Lockable Resources Plugin did not properly escape resource names in generated JavaScript code, thus leading to a cross-site scripting (XSS) vulnerability.</p>
 </div>
-<h3 id='SECURITY-837'>Jira Issue Updater Plugin stores credentials in plain text</h3>
-<strong>SECURITY-837</strong>
 <div class="paragraph">
-<p>Jira Issue Updater Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>The plugin now properly escapes resource names in its scripts.</p>
 </div>
-<h3 id='SECURITY-954'>FTP publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-954</strong>
+<h3 id='SECURITY-976'>CSRF vulnerability and missing permission checks in Slack Notification Plugin allowed capturing credentials
+</h3>
+<strong>SECURITY-976</strong>
 <div class="paragraph">
-<p>FTP publisher Plugin stores credentials unencrypted in its global configuration file <code>com.zanox.hudson.plugins.FTPPublisher.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>Notification Plugin Plugin did not perform permission checks on a method implementing form validation.
+This allowed users with Overall/Read access to Jenkins to connect to an attacker-specified URL using attacker-specified credentials IDs obtained through another method, capturing credentials stored in Jenkins.</p>
 </div>
-<h3 id='SECURITY-956'>WebSphere Deployer Plugin stores credentials in plain text</h3>
-<strong>SECURITY-956</strong>
 <div class="paragraph">
-<p>WebSphere Deployer Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>Additionally, this form validation method did not require POST requests, resulting in a cross-site request forgery vulnerability.</p>
 </div>
-<h3 id='SECURITY-965'>Bitbucket Approve Plugin stores credentials in plain text</h3>
-<strong>SECURITY-965</strong>
 <div class="paragraph">
-<p>Bitbucket Approve Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.bitbucket_approve.BitbucketApprover.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>This form validation method now requires POST requests and Overall/Administer (for global configuration) or Item/Configure permissions (for job configuration).</p>
 </div>
-<h3 id='SECURITY-974'>CSRF vulnerability and missing permission check in FTP publisher Plugin allow connecting to arbitrary FTP servers</h3>
-<strong>SECURITY-974</strong>
+<h3 id='SECURITY-846'>ECS Publisher Plugin stored and displayed API token in plain text
+</h3>
+<strong>SECURITY-846</strong>
 <div class="paragraph">
-<p>A missing permission check in a form validation method in FTP publisher Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified FTP server with attacker-specified credentials.</p>
+<p>ECS Publisher Plugin stored the API token unencrypted in jobs' <code>config.xml</code> files and its global configuration file on the Jenkins master.
+This token could be viewed by users with Extended Read permission, or access to the master file system.</p>
 </div>
 <div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
+<p>Additionally, the API token was not masked from view using a password form field.</p>
 </div>
-<h3 id='SECURITY-1041'>Official OWASP ZAP Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1041</strong>
 <div class="paragraph">
-<p>Official OWASP ZAP Plugin stores Jira credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.zap.ZAPBuilder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>The plugin now stores the API token encrypted in the configuration files on disk and no longer transfers it to users viewing the configuration form in plain text.</p>
 </div>
-<h3 id='SECURITY-1042'>jenkins-cloudformation-plugin Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1042</strong>
+<h3 id='SECURITY-992'>SSRF vulnerability due to missing permission check in Fortify on Demand Uploader Plugin
+</h3>
+<strong>SECURITY-992</strong>
 <div class="paragraph">
-<p>jenkins-cloudformation-plugin Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>A missing permission check in multiple form validation methods in Fortify on Demand Uploader Plugin allowed users with Overall/Read permission to initiate a connection test to an attacker-specified server.</p>
 </div>
-<h3 id='SECURITY-830'>AWS CloudWatch Logs Publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-830</strong>
 <div class="paragraph">
-<p>AWS CloudWatch Logs Publisher Plugin stores credentials unencrypted in its global configuration file <code>jenkins.plugins.awslogspublisher.AWSLogsConfig.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>Additionally, the form validation methods did not require POST requests, resulting in a CSRF vulnerability.</p>
 </div>
-<h3 id='SECURITY-832'>Amazon SNS Build Notifier Plugin stores credentials in plain text</h3>
-<strong>SECURITY-832</strong>
 <div class="paragraph">
-<p>Amazon SNS Build Notifier Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.snsnotify.AmazonSNSNotifier.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>The form validation methods now require POST requests and perform a permission check.</p>
 </div>
-<h3 id='SECURITY-835'>aws-device-farm Plugin stores credentials in plain text</h3>
-<strong>SECURITY-835</strong>
+<h3 id='SECURITY-1089'>PRQA Plugin stored password in plain text
+</h3>
+<strong>SECURITY-1089</strong>
 <div class="paragraph">
-<p>aws-device-farm Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.awsdevicefarm.AWSDeviceFarmRecorder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>PRQA Plugin stored a password unencrypted in its global configuration file on the Jenkins master.
+This password could be viewed by users with access to the master file system.</p>
 </div>
-<h3 id='SECURITY-838'>CloudShare Docker-Machine Plugin stores credentials in plain text</h3>
-<strong>SECURITY-838</strong>
 <div class="paragraph">
-<p>CloudShare Docker-Machine Plugin stores credentials unencrypted in its global configuration file <code>com.cloudshare.jenkins.CloudShareConfiguration.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>The plugin now stores the password encrypted in the configuration files on disk.</p>
 </div>
-<h3 id='SECURITY-841'>Bugzilla Plugin stores credentials in plain text</h3>
-<strong>SECURITY-841</strong>
+<h3 id='SECURITY-1086'>Codebeamer Test Results Trend Updater Plugin stored password in plain text
+</h3>
+<strong>SECURITY-1086</strong>
 <div class="paragraph">
-<p>Bugzilla Plugin stores credentials unencrypted in its global configuration file <code>hudson.plugins.bugzilla.BugzillaProjectProperty.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>Codebeamer Test Results Trend Updater Plugin stored username and password in its configuration unencrypted in jobs' <code>config.xml</code> files on the Jenkins master.
+This password could be viewed by users with Extended Read permission, or access to the master file system.</p>
 </div>
-<h3 id='SECURITY-842'>Trac Publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-842</strong>
 <div class="paragraph">
-<p>Trac Publisher Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>The plugin now integrates with <a href="https://plugins.jenkins.io/credentials">Credentials Plugin</a>.</p>
 </div>
-<h3 id='SECURITY-945'>VMware vRealize Automation Plugin stores credentials in plain text</h3>
-<strong>SECURITY-945</strong>
+<h3 id='SECURITY-1328'>Unprivileged users with Overall/Read access were able to enumerate credential IDs in Arxan MAM Publisher Plugin
+</h3>
+<strong>SECURITY-1328</strong>
 <div class="paragraph">
-<p>VMware vRealize Automation Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
+<p>Arxan MAM Publisher Plugin provides a list of applicable credential IDs to allow administrators configuring the plugin to select the one to use.</p>
 </div>
-<h3 id='SECURITY-949'>Aqua Security Scanner Plugin stores credentials in plain text</h3>
-<strong>SECURITY-949</strong>
 <div class="paragraph">
-<p>Aqua Security Scanner Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.aquadockerscannerbuildstep.AquaDockerScannerBuilder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>This functionality did not check permissions, allowing any user with Overall/Read permission to get a list of valid credentials IDs.
+Those could be used as part of an attack to capture the credentials using another vulnerability.</p>
 </div>
-<h3 id='SECURITY-952'>veracode-scanner Plugin stores credentials in plain text</h3>
-<strong>SECURITY-952</strong>
 <div class="paragraph">
-<p>veracode-scanner Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.veracodescanner.VeracodeNotifier.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-957'>OctopusDeploy Plugin stores credentials in plain text</h3>
-<strong>SECURITY-957</strong>
-<div class="paragraph">
-<p>OctopusDeploy Plugin stores credentials unencrypted in its global configuration file <code>hudson.plugins.octopusdeploy.OctopusDeployPlugin.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-961'>WildFly Deployer Plugin stores credentials in plain text</h3>
-<strong>SECURITY-961</strong>
-<div class="paragraph">
-<p>WildFly Deployer Plugin stores deployment credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-962'>VS Team Services Continuous Deployment Plugin stores credentials in plain text</h3>
-<strong>SECURITY-962</strong>
-<div class="paragraph">
-<p>VS Team Services Continuous Deployment Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-964'>Hyper.sh Commons Plugin stores credentials in plain text</h3>
-<strong>SECURITY-964</strong>
-<div class="paragraph">
-<p>Hyper.sh Commons Plugin stores credentials unencrypted in its global configuration file <code>sh.hyper.plugins.hypercommons.Tools.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-966'>Audit to Database Plugin stores credentials in plain text</h3>
-<strong>SECURITY-966</strong>
-<div class="paragraph">
-<p>Audit to Database Plugin stores database credentials unencrypted in its global configuration file <code>audit2db.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-977'>CSRF vulnerability and missing permission check in Audit to Database Plugin allow connecting to arbitrary databases</h3>
-<strong>SECURITY-977</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Audit to Database Plugin allows users with Overall/Read permission to initiate a JDBC database connection test to an attacker-specified server with attacker-specified credentials.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-979'>CSRF vulnerability and missing permission check in VMware Lab Manager Slaves Plugin</h3>
-<strong>SECURITY-979</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in VMware Lab Manager Slaves Plugin allows users with Overall/Read permission to initiate a Lab Manager connection test to an attacker-specified server with attacker-specified credentials and settings.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-981'>CSRF vulnerability and missing permission check in OpenShift Deployer Plugin</h3>
-<strong>SECURITY-981</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in OpenShift Deployer Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified server with attacker-specified credentials.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-991'>CSRF vulnerability and missing permission check in Gearman Plugin</h3>
-<strong>SECURITY-991</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Gearman Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified server.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-993'>CSRF vulnerability and missing permission check in Zephyr Enterprise Test Management Plugin allow SSRF</h3>
-<strong>SECURITY-993</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Zephyr Enterprise Test Management Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified server with attacker-specified credentials.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1037'>CSRF vulnerability and missing permission check in Chef Sinatra Plugin allow SSRF</h3>
-<strong>SECURITY-1037</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Chef Sinatra Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified server.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1043'>Fabric Beta Publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1043</strong>
-<div class="paragraph">
-<p>Fabric Beta Publisher Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1044'>Upload to pgyer Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1044</strong>
-<div class="paragraph">
-<p>Upload to pgyer Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1054'>CSRF vulnerability and missing permission check in SOASTA CloudTest Plugin allow SSRF</h3>
-<strong>SECURITY-1054</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in SOASTA CloudTest Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified URL with attacker-specified credentials and SSH key store options.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1058'>CSRF vulnerability and missing permission check in Nomad Plugin allow SSRF</h3>
-<strong>SECURITY-1058</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Nomad Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified URL.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1059'>Open STF Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1059</strong>
-<div class="paragraph">
-<p>Open STF Plugin stores credentials unencrypted in its global configuration file <code>hudson.plugins.openstf.STFBuildWrapper.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1061'>Perfecto Mobile Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1061</strong>
-<div class="paragraph">
-<p>Perfecto Mobile Plugin stores credentials unencrypted in its global configuration file <code>com.perfectomobile.jenkins.ScriptExecutionBuilder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1062'>TestFairy Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1062</strong>
-<div class="paragraph">
-<p>TestFairy Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1069'>Crowd Integration Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1069</strong>
-<div class="paragraph">
-<p>Crowd Integration Plugin stores credentials unencrypted in the global configuration file <code>config.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1084'>CSRF vulnerability and missing permission check in openid Plugin allow SSRF</h3>
-<strong>SECURITY-1084</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in openid Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified URL.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1085'>StarTeam Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1085</strong>
-<div class="paragraph">
-<p>StarTeam Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1091'>CSRF vulnerability and missing permission check in jenkins-reviewbot Plugin allow SSRF</h3>
-<strong>SECURITY-1091</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in jenkins-reviewbot Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified URL with attacker-specified credentials.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1093'>Assembla Auth Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1093</strong>
-<div class="paragraph">
-<p>Assembla Auth Plugin stores credentials unencrypted in the global configuration file <code>config.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-828'>Relution Enterprise Appstore Publisher Plugin stores credentials in plain text</h3>
-<strong>SECURITY-828</strong>
-<div class="paragraph">
-<p>Relution Enterprise Appstore Publisher Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.relution_publisher.configuration.global.StoreConfiguration.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-843'>Klaros-Testmanagement Plugin stores credentials in plain text</h3>
-<strong>SECURITY-843</strong>
-<div class="paragraph">
-<p>Klaros-Testmanagement Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-946'>mabl Plugin stores credentials in plain text</h3>
-<strong>SECURITY-946</strong>
-<div class="paragraph">
-<p>mabl Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-947'>Diawi Upload Plugin stores credentials in plain text</h3>
-<strong>SECURITY-947</strong>
-<div class="paragraph">
-<p>Diawi Upload Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-955'>Minio Storage Plugin stores credentials in plain text</h3>
-<strong>SECURITY-955</strong>
-<div class="paragraph">
-<p>Minio Storage Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.minio.MinioUploader.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-959'>DeployHub Plugin stores credentials in plain text</h3>
-<strong>SECURITY-959</strong>
-<div class="paragraph">
-<p>DeployHub Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-963'>youtrack-plugin Plugin stored credentials in plain text</h3>
-<strong>SECURITY-963</strong>
-<div class="paragraph">
-<p>youtrack-plugin Plugin stored credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.youtrack.YouTrackProjectProperty.xml</code> on the Jenkins master.
-These credentials could be viewed by users with access to the master file system.</p>
-</div>
-<div class="paragraph">
-<p>youtrack-plugin Plugin now stores credentials encrypted.</p>
-</div>
-<h3 id='SECURITY-1031'>Jabber Server Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1031</strong>
-<div class="paragraph">
-<p>Jabber Server Plugin stores credentials unencrypted in its global configuration file <code>de.e_nexus.jabber.JabberBuilder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1032'>CSRF vulnerability and missing permission check in Netsparker Cloud Scan Plugin allowed SSRF</h3>
-<strong>SECURITY-1032</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Netsparker Cloud Scan Plugin allowed users with Overall/Read permission to initiate a connection test to an attacker-specified server with attacker-specified API token.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method did not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<div class="paragraph">
-<p>The form validation method now performs a permission check for Overall/Administer and requires that requests be sent via POST.</p>
-</div>
-<h3 id='SECURITY-1040'>Netsparker Cloud Scan Plugin stored credentials in plain text</h3>
-<strong>SECURITY-1040</strong>
-<div class="paragraph">
-<p>Netsparker Cloud Scan Plugin stored API tokens unencrypted in its global configuration file <code>com.netsparker.cloud.plugin.NCScanBuilder.xml</code> on the Jenkins master.
-These API tokens could be viewed by users with access to the master file system.</p>
-</div>
-<div class="paragraph">
-<p>Netsparker Cloud Scan Plugin now stores API tokens encrypted.</p>
-</div>
-<h3 id='SECURITY-1055'>CSRF vulnerability and missing permission check in Kmap Plugin allow SSRF</h3>
-<strong>SECURITY-1055</strong>
-<div class="paragraph">
-<p>A missing permission check in a form validation method in Kmap Plugin allows users with Overall/Read permission to initiate a connection test to an attacker-specified server with attacker-specified credentials.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, the form validation method does not require POST requests, resulting in a CSRF vulnerability.</p>
-</div>
-<h3 id='SECURITY-1056'>Kmap Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1056</strong>
-<div class="paragraph">
-<p>Kmap Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1063'>crittercism-dsym Plugin stores API key in plain text</h3>
-<strong>SECURITY-1063</strong>
-<div class="paragraph">
-<p>crittercism-dsym Plugin stores credentials unencrypted in job <code>config.xml</code> files on the Jenkins master.
-These credentials can be viewed by users with Extended Read permission, or access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1066'>Serena SRA Deploy Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1066</strong>
-<div class="paragraph">
-<p>Serena SRA Deploy Plugin stores credentials unencrypted in its global configuration file <code>com.urbancode.ds.jenkins.plugins.serenarapublisher.UrbanDeployPublisher.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1090'>Sametime Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1090</strong>
-<div class="paragraph">
-<p>Sametime Plugin stores credentials unencrypted in its global configuration file <code>hudson.plugins.sametime.im.transport.SametimePublisher.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-1092'>Koji Plugin stores credentials in plain text</h3>
-<strong>SECURITY-1092</strong>
-<div class="paragraph">
-<p>Koji Plugin stores credentials unencrypted in its global configuration file <code>org.jenkinsci.plugins.koji.KojiBuilder.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
-</div>
-<h3 id='SECURITY-960'>CloudCoreo DeployTime Plugin stores credentials in plain text</h3>
-<strong>SECURITY-960</strong>
-<div class="paragraph">
-<p>CloudCoreo DeployTime Plugin stores credentials unencrypted in its global configuration file <code>com.cloudcoreo.plugins.jenkins.CloudCoreoBuildWrapper.xml</code> on the Jenkins master.
-These credentials can be viewed by users with access to the master file system.</p>
+<p>An enumeration of credentials IDs in this plugin now requires Overall/Administer permission.</p>
 </div>
 <p></p>
 <h4>Severity</h4>
 <ul>
-<li>SECURITY-828:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-829:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-830:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-831:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-832:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-835:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-837:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-838:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-839:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-841:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-842:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-843:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-945:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-946:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-947:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-949:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-952:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-954:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-955:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-956:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-957:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-959:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-960:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-961:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-962:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-963:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-964:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-965:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-966:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-974:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-977:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-979:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-981:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-991:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-993:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1031:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1032:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1037:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1040:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1041:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1042:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1043:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1044:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1054:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1055:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1056:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1058:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1059:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1061:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1062:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1063:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1066:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1069:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1084:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1085:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
-<li>SECURITY-1090:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1091:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
-<li>SECURITY-1092:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
-<li>SECURITY-1093:<a href='https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
+<li>SECURITY-846:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
+<li>SECURITY-976:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N'>Medium</a></li>
+<li>SECURITY-992:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N'>Medium</a></li>
+<li>SECURITY-1086:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
+<li>SECURITY-1089:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Low</a></li>
+<li>SECURITY-1328:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N'>Medium</a></li>
+<li>SECURITY-1353:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H'>High</a></li>
+<li>SECURITY-1361:<a href='http://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N'>Medium</a></li>
 </ul>
 <p></p>
-<p>As of publication of this advisory, no fixes are available for the following plugins:</p>
+<h4>Fix</h4>
 <ul>
-<li>Amazon SNS Build NotifierPlugin</li>
-<li>Aqua Security ScannerPlugin</li>
-<li>Assembla AuthPlugin</li>
-<li>Audit to DatabasePlugin</li>
-<li>AWS CloudWatch Logs PublisherPlugin</li>
-<li>AWS Elastic Beanstalk PublisherPlugin</li>
-<li>aws-device-farmPlugin</li>
-<li>Bitbucket ApprovePlugin</li>
-<li>BugzillaPlugin</li>
-<li>Chef SinatraPlugin</li>
-<li>CloudCoreo DeployTimePlugin</li>
-<li>CloudShare Docker-MachinePlugin</li>
-<li>crittercism-dsymPlugin</li>
-<li>Crowd IntegrationPlugin</li>
-<li>DeployHubPlugin</li>
-<li>Diawi UploadPlugin</li>
-<li>Fabric Beta PublisherPlugin</li>
-<li>FTP publisherPlugin</li>
-<li>GearmanPlugin</li>
-<li>HockeyAppPlugin</li>
-<li>Hyper.sh CommonsPlugin</li>
-<li>IRCPlugin</li>
-<li>Jabber ServerPlugin</li>
-<li>jenkins-cloudformation-pluginPlugin</li>
-<li>jenkins-reviewbotPlugin</li>
-<li>Jira Issue UpdaterPlugin</li>
-<li>Klaros-TestmanagementPlugin</li>
-<li>KmapPlugin</li>
-<li>KojiPlugin</li>
-<li>mablPlugin</li>
-<li>Minio StoragePlugin</li>
-<li>NomadPlugin</li>
-<li>OctopusDeployPlugin</li>
-<li>Official OWASP ZAPPlugin</li>
-<li>Open STFPlugin</li>
-<li>openidPlugin</li>
-<li>OpenShift DeployerPlugin</li>
-<li>Perfecto MobilePlugin</li>
-<li>Relution Enterprise Appstore PublisherPlugin</li>
-<li>SametimePlugin</li>
-<li>Serena SRA DeployPlugin</li>
-<li>SOASTA CloudTestPlugin</li>
-<li>StarTeamPlugin</li>
-<li>TestFairyPlugin</li>
-<li>Trac PublisherPlugin</li>
-<li>Upload to pgyerPlugin</li>
-<li>veracode-scannerPlugin</li>
-<li>VMware Lab Manager SlavesPlugin</li>
-<li>VMware vRealize AutomationPlugin</li>
-<li>VS Team Services Continuous DeploymentPlugin</li>
-<li>WebSphere DeployerPlugin</li>
-<li>WildFly DeployerPlugin</li>
-<li>Zephyr Enterprise Test ManagementPlugin</li>
+<li><strong>CloudBees Traditional Platforms</strong>&nbsp;should be upgraded 2.164.1.2-rev2</li>
+<li><strong>CloudBees Cloud Platforms</strong>&nbsp;should be upgraded 2.164.1.2-rev2</li>
+<li><strong>CloudBees Jenkins Enterprise</strong>&nbsp;should be upgraded the Managed Masters and Operations Center to 2.164.1.2-rev2</li>
+<li><strong>CloudBees Jenkins Platform</strong>&nbsp;(rolling train, CJP Operations Center and CJP Client Master (2.x.y.z) should be upgraded to version 2.164.1.2-rev2</li>
+<li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.138.x.0.z) should be upgraded to version 2.138.40.0.2-rev5</li>
+<li><strong>CloudBees Jenkins Platform</strong>&nbsp;(fixed train, CJP Operations Center and CJP Client Master (2.107.x.0.z) should be upgraded to version 2.107.37.0.2-rev7</li>
+<li><strong>CloudBees Jenkins Distribution</strong>&nbsp;should be upgraded to version 2.164.1.2-rev2</li>
 </ul>
 ]]></summary>
   </entry>

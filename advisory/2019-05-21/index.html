@@ -3,7 +3,7 @@
 Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBees Core.
 </strong></p>
 <h3 id='SECURITY-1316'>Missing permission check allowed obtaining limited information about system configuration in PAM Authentication Plugin</h3>
-<strong>SECURITY-1316</strong>
+<strong>SECURITY-1316 / CVE-2019-10319</strong>
 <div class="paragraph">
 <p>A missing permission check in PAM Authentication Plugin allowed users with Overall/Read permission to invoke a form validation method to obtain limited information about the file <code>/etc/shadow</code> on systems with that file present, as well as the system user the Jenkins process is running as.</p>
 </div>
@@ -46,7 +46,7 @@ Jenkins, CloudBees Jenkins Distribution, CloudBees Jenkins Platform and CloudBee
 <p>This form validation method now requires Overall/Administer permission.</p>
 </div>
 <h3 id='SECURITY-1322'>Certificate file read vulnerability in Credentials Plugin</h3>
-<strong>SECURITY-1322</strong>
+<strong>SECURITY-1322 / CVE-2019-10320</strong>
 <div class="paragraph">
 <p>Credentials Plugin allowed the creation of Certificate credentials from a PKCS#12 file on the Jenkins master.
 Users with permission to create or update credentials could use the associated form validation to confirm the existence of files with an attacker-specified path.</p>

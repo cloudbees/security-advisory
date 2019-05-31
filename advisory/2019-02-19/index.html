@@ -15,9 +15,7 @@ CloudBees Jenkins Solutions.
 Sandbox Bypasses in Script Security Plugin
 </h3>
 <strong>
-SECURITY-1320
-/
-CVE pending
+SECURITY-1320 / CVE-2019-1003024
 </strong>
 <div class="paragraph">
 <p>The previously implemented script security sandbox protections prohibiting the use of unsafe AST transforming annotations such as <code>@Grab</code> (<a href="../2019-01-08/#SECURITY-1266">2019-01-08 fix for SECURITY-1266</a>) could be circumvented through use of various Groovy language features:</p>
@@ -47,9 +45,7 @@ During the compilation phase, both simple and full class names of prohibited ann
 CSRF vulnerability and missing permission checks in Cloud Foundry Plugin allowed capturing credentials
 </h3>
 <strong>
-SECURITY-876
-/
-CVE pending
+SECURITY-876 / CVE-2019-1003025
 </strong>
 <div class="paragraph">
 <p>Cloud Foundry Plugin did not perform permission checks on a method implementing form validation.
@@ -65,9 +61,7 @@ This allowed users with Overall/Read access to Jenkins to connect to an attacker
 SSRF vulnerability due to missing permission check in Mattermost Notification Plugin
 </h3>
 <strong>
-SECURITY-985
-/
-CVE pending
+SECURITY-985 / CVE-2019-1003026
 </strong>
 <div class="paragraph">
 <p>A missing permission check in a form validation method in Mattermost Notification Plugin allowed users with Overall/Read permission to initiate a connection test, connecting to an attacker-specified Mattermost server and room and posting a message.</p>
@@ -82,9 +76,7 @@ CVE pending
 SSRF vulnerability due to missing permission check in OctopusDeploy Plugin
 </h3>
 <strong>
-SECURITY-817
-/
-CVE pending
+SECURITY-817 / CVE-2019-1003027
 </strong>
 <div class="paragraph">
 <p>A missing permission check in a form validation method in OctopusDeploy Plugin allowed users with Overall/Read permission to initiate a connection test, sending an HTTP HEAD request to an attacker-specified URL, returning HTTP response code if successful, or exception error message otherwise.</p>
@@ -99,9 +91,7 @@ CVE pending
 SSRF vulnerability due to missing permission check in JMS Messaging Plugin
 </h3>
 <strong>
-SECURITY-1033
-/
-CVE pending
+SECURITY-1033 / CVE-2019-1003028
 </strong>
 <div class="paragraph">
 <p>A missing permission check in a form validation method in JMS Messaging Plugin allowed users with Overall/Read permission to initiate a connection test, sending an HTTP request to an attacker-specified URL.</p>

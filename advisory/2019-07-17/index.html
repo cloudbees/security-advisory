@@ -12,7 +12,7 @@ This path would be used to store the uploaded file on the Jenkins master, result
 <p>File parameters that escape the base directory are no longer accepted and the build will fail.</p>
 </div>
 <div class="paragraph">
-<p>This vulnerability is the result of an incomplete fix for <a href="/security/advisory/2018-10-10/#SECURITY-1074">SECURITY-1074</a>.</p>
+<p>This vulnerability is the result of an incomplete fix for SECURITY-1074.</p>
 </div>
 <h3 id='SECURITY-626'>CSRF protection tokens did not expire</h3>
 <strong>SECURITY-626 / CVE-2019-10353</strong>
@@ -32,7 +32,6 @@ Once that&#8217;s invalidated or expired, corresponding CSRF tokens will become 
 </td>
 <td class="content">
 This fix may impact scripts that obtain a crumb from the crumb issuer API. They may need to be updated to retain the session ID for subsequent requests.
-For further information, see the <a href="/doc/upgrade-guide/2.176/#SECURITY-626">LTS upgrade guide</a>.
 </td>
 </tr>
 </table>
@@ -53,7 +52,7 @@ These views are frequently comprised of several view fragments, enabling plugins
 <div class="paragraph">
 <p>The Stapler web framework has been extended with a Service Provider Interface (SPI) that allows preventing views from being rendered.
 The implementation of that SPI in Jenkins now prevents view fragments from being rendered.
-Further details are available in the <a href="/doc/developer/views/SECURITY-534">developer documentation</a>.</p>
+</p>
 </div>
 <div class="paragraph">
 <p>Most views in Jenkins and Jenkins plugins should be compatible with this change.
